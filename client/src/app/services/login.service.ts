@@ -16,7 +16,8 @@ export class LoginService {
     constructor(private http: HttpClient) { }
 
     createUser(formData: FormData): Promise<any>{
-            
+        
+        console.log("")
         const headers = new HttpHeaders()
         .set('Access-Control-Allow-Origin', '*')
 
