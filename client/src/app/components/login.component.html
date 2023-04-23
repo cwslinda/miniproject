@@ -1,0 +1,97 @@
+<!-- <h2>Login</h2>
+
+<form [formGroup]="loginForm" (ngSubmit)="createUser()">
+  <table>
+    <tr>
+      <td>Username:</td>
+      <td>
+        <input type="text" size="30" placeholder="Username" formControlName="username">
+      </td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>
+          <input type="text" size="30" placeholder="Email" formControlName="email">
+        </td>
+      </tr>
+    <tr>
+      <td>Password:</td>
+      <td>
+        <input type="text" size="30" placeholder="Password" formControlName="password">
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button type="submit">Login</button>
+      </td>
+    </tr>
+  </table>
+
+</form>  -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Portal</title>
+</head>
+<body>
+
+  <mat-grid-list cols="2" rowHeight="100vh">
+    <mat-grid-tile class="bg-image"></mat-grid-tile>
+    <mat-grid-tile class="form-tile">
+
+      <mat-card  class="form-card">
+        <mat-card-content>
+          <mat-card-header class="card-header-login">Login to Book Portal</mat-card-header>
+          <form [formGroup]="loginForm" (ngSubmit)="createUser()">
+            <table>
+              <tr>
+                <td>
+                  <mat-form-field appearance="fill">
+                  <mat-label>Username</mat-label>
+                  <input matInput type="text" size="30" placeholder="Username" formControlName="username">
+                </mat-form-field>
+              </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput size="30" type="text" placeholder="Email" formControlName="email">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <div class="submit-button"> 
+                    <button mat-raised-button type="submit">Login</button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
+
+</body>
+</html>

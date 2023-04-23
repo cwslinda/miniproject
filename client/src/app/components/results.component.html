@@ -1,0 +1,12 @@
+<h1>Search Results</h1>
+<div *ngIf="!books">
+    <h3>There are not books found using your keyword</h3>
+</div>
+<div *ngIf="books">
+    <div *ngFor="let b of books" class="book">
+    <h4 [routerLink]="['/book',b.id]">{{ b.title }}</h4>
+    <h4>{{b.id}}</h4>
+  </div>
+</div>
+
+

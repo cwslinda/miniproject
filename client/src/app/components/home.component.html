@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>Home Page</title>
+
+</head>
+<body>
+    <form [formGroup]="form" (ngSubmit)="search()" class="example-form">
+        <mat-form-field class="example-full-width">
+        <span matPrefix> </span>
+        <input type="text" matInput placeholder="Search" formControlName= "keyword">
+        <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+        </mat-form-field>
+        <br/>
+    </form>
+
+<div *ngIf="books">
+    <h1>Saved Books</h1>
+    <div *ngFor="let b of books" class="book">
+    <h4 [routerLink]="['/book',b.id]">{{ b.title }}</h4>
+    <button (click)="deleteBook(b.id)">delete</button>
+  </div>
+</div>
+
+<div *ngIf="comments">
+    <h1>Written Comments</h1>
+    <div *ngFor="let comment of comments" class="comment">
+    <h4> book title: {{comment.bookTitle}}</h4>
+    <h4 [routerLink]="['/book', comment.bookId]"> title : {{comment.commentTitle}}</h4>
+    <h4> comment : {{comment.comment}}</h4>
+    <h4> date : {{comment.commentDate}}</h4>
+    <h4> user : {{comment.username}}</h4>
+  </div>
+</div>
+
+    <button (click)="logout()" [routerLink]="['/login']">logout</button>
+</body>

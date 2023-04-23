@@ -1,0 +1,37 @@
+.bg-image {
+    background-image: url('../../assets/images/login_bg.jpg');
+    background-size: cover
+}
+
+
+.card-header-login {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+.submit-button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.form-card{
+    position: relative;
+    height:350px;
+    justify-items: center;
+}
+
+.submit-button{
+margin: 0;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+mat-form-field {
+    width: 250px;
+}
