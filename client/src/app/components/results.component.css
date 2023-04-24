@@ -43,7 +43,7 @@
     }
 
     .banner {
-        background-image: url('../../assets/images/login_bg.jpg');
+        background-image: url('../../assets/bg/login_bg.jpg');
         height: 200px;
         background-size:cover;
         background-position:right center;
