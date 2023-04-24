@@ -14,14 +14,14 @@ export class CommentService{
 
 
 postComment(formData: FormData): Promise<any>{
-    console.log("in service - postComment")
 
-    console.log(formData)
     const headers = new HttpHeaders()
         .set('Access-Control-Allow-Origin', '*')
+        .set('Access-Control-Allow-Credentials', 'true')
 
+        console.log("in service - postComment")
     return firstValueFrom(
-        this.http.post<any>(`${this.url}/api/comment/save`, {formData, headers})
+        this.http.post<any>(`https://ignorant-north-production.up.railway.app/api/comment/save`, formData)
     )
 }
 
@@ -34,7 +34,7 @@ postComment(formData: FormData): Promise<any>{
                     .set('content-type', 'application/json')
                     .set('Access-Control-Allow-Origin', '*')
 
-    return lastValueFrom(this.http.get<CommentResult[]>(`${this.url}/api/${bookId}/comments`, {headers}))
+    return lastValueFrom(this.http.get<CommentResult[]>(`https://ignorant-north-production.up.railway.app/api/${bookId}/comments`, {headers}))
 }
 
 getCommentsFromId(userId: string): Promise<CommentResult[]>{
@@ -45,12 +45,12 @@ getCommentsFromId(userId: string): Promise<CommentResult[]>{
                     .set('content-type', 'application/json')
                     .set('Access-Control-Allow-Origin', '*')
 
-    return lastValueFrom(this.http.get<CommentResult[]>(`${this.url}/api/user-comments/${userId}`, {headers}))
+    return lastValueFrom(this.http.get<CommentResult[]>(`https://ignorant-north-production.up.railway.app/api/user-comments/${userId}`, {headers}))
 }
 
 deleteComment(commentId: string): Promise<any>{
     const params = new HttpParams().set("commentId", commentId)
 
-    return lastValueFrom(this.http.delete<any>(`${this.url}/api/comment/delete`, {params}))
+    return lastValueFrom(this.http.delete<any>(`https://ignorant-north-production.up.railway.app/api/comment/delete`, {params}))
     }
 }

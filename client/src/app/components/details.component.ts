@@ -90,6 +90,7 @@ export class DetailsComponent {
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
   }
+
   processCommentForm(){
    const formData = new FormData();
    formData.set("userId", this.id)
@@ -100,6 +101,7 @@ export class DetailsComponent {
 
    this.commentSvc.postComment(formData).then(result => {
     this.commentId = result["commentId"]
+    console.log("details components")
     this.ngOnInit()
    }).catch((error: any) =>{
     console.log(error)
