@@ -60,6 +60,7 @@ public class CommentController {
 
     @GetMapping(path="/{bookId}/comments")
     @ResponseBody
+    @CrossOrigin()
     public ResponseEntity<List<Comment>> getComments(@PathVariable String bookId) {
 
         List<Comment> commentsList = commentSvc.getComments(bookId);

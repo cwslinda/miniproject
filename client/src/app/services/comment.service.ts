@@ -17,9 +17,11 @@ postComment(formData: FormData): Promise<any>{
     console.log("in service - postComment")
 
     console.log(formData)
+    const headers = new HttpHeaders()
+        .set('Access-Control-Allow-Origin', '*')
 
     return firstValueFrom(
-        this.http.post<any>(`${this.url}/api/comment/save`, formData)
+        this.http.post<any>(`${this.url}/api/comment/save`, {formData, headers})
     )
 }
 
