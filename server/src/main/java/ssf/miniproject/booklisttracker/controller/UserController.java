@@ -81,6 +81,7 @@ public class UserController {
 
     @GetMapping(path="/user-comments/{userId}")
     @ResponseBody
+    @CrossOrigin()
     public ResponseEntity<List<Comment>> getCommentsFromId(@PathVariable String userId) {
 
         List<Comment> commentsList = commentSvc.getCommentsFromId(userId);
