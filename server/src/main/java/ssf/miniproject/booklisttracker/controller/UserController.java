@@ -1,8 +1,6 @@
 package ssf.miniproject.booklisttracker.controller;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.json.Json;
-import jakarta.json.JsonObject;
 import ssf.miniproject.booklisttracker.model.Comment;
 import ssf.miniproject.booklisttracker.model.User;
 import ssf.miniproject.booklisttracker.service.CommentService;
@@ -93,12 +90,7 @@ public class UserController {
         return ResponseEntity.ok(commentsList);
     }
 
-    // @GetMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE)
-    // @ResponseBody
-    // @CrossOrigin()
-    // public ResponseEntity<String> userLogin(@RequestPart("username") String username, @RequestPart("password") String password, @RequestPart("email") String email) {
-
-    // }
+   
 
 
 }

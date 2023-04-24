@@ -4,10 +4,6 @@ import java.util.Date;
 
 import org.bson.Document;
 
-import jakarta.json.Json;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonValue;
-
 public class Comment {
 
     private String commentId;

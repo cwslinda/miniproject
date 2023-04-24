@@ -24,6 +24,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
    imports: [
@@ -48,7 +49,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
       MatTableModule,
       MatPaginatorModule,
       MatProgressSpinnerModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      MatExpansionModule
    ],
    exports: [
 
@@ -73,7 +75,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
       MatTooltipModule,
       MatTableModule,
       MatPaginatorModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      MatExpansionModule
    ],
    providers: [
       MatDatepickerModule,

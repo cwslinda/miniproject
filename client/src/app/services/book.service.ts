@@ -21,7 +21,7 @@ export class BookService{
                         .set('content-type', 'application/json')
                         .set('Access-Control-Allow-Origin', '*')
 
-        return lastValueFrom(this.http.get<Book[]>(`api/search`, {headers, params}))
+        return lastValueFrom(this.http.get<Book[]>(`${this.url}/api/search`, {headers, params}))
     }
 
 
@@ -32,7 +32,7 @@ export class BookService{
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
 
-    return lastValueFrom(this.http.get<Book>(`/api/book/${bookId}`, {headers})
+    return lastValueFrom(this.http.get<Book>(`${this.url}/api/book/${bookId}`, {headers})
     )
    }
 
@@ -42,7 +42,7 @@ export class BookService{
             .set('content-type', 'application/json')
             .set('Access-Control-Allow-Origin', '*')
 
-      return lastValueFrom(this.http.get<any>(`/api/user/${userId}`, {headers})
+      return lastValueFrom(this.http.get<any>(`${this.url}/api/user/${userId}`, {headers})
       
     )
    }
@@ -67,7 +67,7 @@ export class BookService{
               
           
         return lastValueFrom(
-                    this.http.post<any>(`/api/save/${userId}`, data, {headers})
+                    this.http.post<any>(`${this.url}/api/save/${userId}`, data, {headers})
                 )
    }
 
@@ -77,7 +77,7 @@ export class BookService{
     const params = new HttpParams().set("bookId", bookId).set("userId", userId)
 
     return firstValueFrom(
-        this.http.delete<any>(`/api/delete`, {params})     
+        this.http.delete<any>(`${this.url}/api/delete`, {params})     
     )              
 }
 

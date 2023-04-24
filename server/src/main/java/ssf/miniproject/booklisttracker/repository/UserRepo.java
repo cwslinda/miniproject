@@ -5,13 +5,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
-import jakarta.json.Json;
 import ssf.miniproject.booklisttracker.model.User;
 
 import static ssf.miniproject.booklisttracker.repository.Queries.*;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 
 @Repository

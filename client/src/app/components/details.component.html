@@ -1,45 +1,80 @@
 
-<h1>Details</h1>
-<div *ngIf="!book">
-    <h3>Loading..</h3>
+<mat-toolbar class="header">
+    <span>Book Portal</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()" [routerLink]="['/login']">
+            <mat-icon>input</mat-icon>
+            <span>Logout</span> 
+        </button>
+        <button mat-menu-item [routerLink]="['/home', id]">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+       
+      </mat-menu>
+  </mat-toolbar><div class="banner">
+</div>  
+<div class="main-container flex-parent-element">
+    <mat-card class="details-card flex-child-element">
+        <mat-card-header>
+          <mat-card-subtitle>{{book.authors}}</mat-card-subtitle>
+          <mat-card-title>{{book.title}}</mat-card-title>
+        </mat-card-header>
+        <div class="book-picture">
+            <img src="{{book.imageUrl}}" alt="">
+        </div>
+        <mat-card-content>
+          <p class="book-description">{{book.description}}
+          </p>
+          <p></p>
+          <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-actions>
+            <a href="{{book.previewLink}}"><button mat-button>PREVIEW</button></a>
+            <a href="{{book.urlLink}}"><button mat-button>MORE</button></a>
+            <button mat-button (click)="processForm()">
+                <mat-icon>save</mat-icon>
+            </button>
+        </mat-card-actions>
+      </mat-card>
+      <div class="comment-container flex-child-element ">
+        <button mat-icon-button (click)="back()"><mat-icon>backspace</mat-icon></button>
+        <form  class="comment-form example-form" [formGroup]="commentForm" (ngSubmit)="processCommentForm()">
+            <table class="example-full-width">
+                <tr>
+                <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Title of Comment</mat-label>
+                    <input matInput type="text" size="30" placeholder="title" formControlName="title">
+                </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field appearance="fill" class="example-full-width">
+                        <mat-label>Comment</mat-label>
+                        <input matInput type="text" placeholder="comment" formControlName="comment">
+                    </mat-form-field>
+                    <td><button type="submit" mat-button><mat-icon>edit</mat-icon></button></td>
+                </tr>
+            </table>
+        </form >
+        <div *ngIf="comments">
+            <mat-card class="comment-example-card" *ngFor="let comment of comments">
+                <mat-card-header>
+                    <mat-card-title>{{comment.commentTitle}}</mat-card-title>
+                    <mat-card-subtitle [routerLink]="['/book',comment.bookId]">{{comment.bookTitle}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{comment.comment}}</p>
+                    <p>by: {{comment.username}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button [disabled]="userId != comment.userId ? true :false " (click)="deleteComment(comment.commentId)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+          </div>
+    </div>
 </div>
-<div *ngIf="book">
-    <h2>{{book.title}}</h2>
-    <p>{{book.description}}</p>
-    <p>{{book.authors}}</p>
-    <p>{{id}}</p>
-
-    <button (click)="processForm()">save</button>
-
-</div>
-
-<div *ngIf="comments">
-    <div *ngFor="let comment of comments" class="comment">
-    <h4> title : {{comment.commentTitle}}</h4>
-    <h4> comment : {{comment.comment}}</h4>
-    <h4> date : {{comment.commentDate}}</h4>
-    <h4> user : {{comment.username}}</h4>
-
-    <button [disabled]="id != comment.userId ? true :false " (click)="deleteComment(comment.commentId)">delete</button>
-  </div>
-</div>
-
-<form [formGroup]="commentForm" (ngSubmit)="processCommentForm()">
-    <table>
-        <tr>
-            <td>Title</td>
-            <td><input type="text" formControlName="title"></td>
-        </tr>
-        <tr>
-            <td>Comment</td>
-            <td><input type="textare" formControlName="comment"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><button type="submit">Post</button></td>
-        </tr>
-    </table>
-</form>
-
-
-<button (click)="back()">back</button>

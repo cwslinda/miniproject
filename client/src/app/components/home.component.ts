@@ -14,20 +14,22 @@ import { CommentService } from '../services/comment.service';
 export class HomeComponent implements OnInit {
 
 
+  panelOpenState = false;
   showFiller = false;
   user!: User
   form!: FormGroup
   param$!: Subscription
   userId!: string
-  username!: string
   books!: Book[]
   comments!: CommentResult[]
 
+  username: string = localStorage.getItem("username")!
 
 
   constructor(private fb: FormBuilder, private router: Router, private ar: ActivatedRoute, private bookSvc: BookService, private commentSvc: CommentService){}
 
   ngOnInit(): void {
+
     this.param$ = this.ar.params.subscribe(
       (params) => {
     
@@ -56,7 +58,7 @@ export class HomeComponent implements OnInit {
     this.form = this.createForm();
   }
 
-
+ 
   search(){
     const keyword: string = this.form.value['keyword']
     console.log("search for", keyword)
@@ -86,4 +88,15 @@ export class HomeComponent implements OnInit {
 
   }
 
+  deleteComment(commentId: string){
+  
+    this.commentSvc.deleteComment(commentId).then(result => {
+    console.log(result)
+    this.ngOnInit()
+    
+  }).catch(error =>{
+    console.log(error)
+
+    })
+  }
 }

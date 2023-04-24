@@ -3,8 +3,6 @@ package ssf.miniproject.booklisttracker.model;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.CopyOnWriteArrayList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import jakarta.json.Json;

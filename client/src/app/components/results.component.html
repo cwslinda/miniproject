@@ -1,12 +1,61 @@
-<h1>Search Results</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Portal</title>
+</head>
+<body>
+  <div class="header-container">
+    <mat-toolbar class="header">
+        <span>Book Portal</span>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()" [routerLink]="['/login']">
+                <mat-icon>input</mat-icon>
+                <span>Logout</span> 
+            </button>
+            <button mat-menu-item [routerLink]="['/home',userId]">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+            </button>
+        
+        </mat-menu>
+    </mat-toolbar>
+    <div class="banner">
+        <div>
+            <form align="center" [formGroup]="form" (ngSubmit)="search()" class="example-form">
+                <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="Search" formControlName= "keyword">
+                <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+                </mat-form-field>
+                <br/>
+            </form>
+        </div>  
+    </div>
+</div>
+<h1 align="center">Search Results</h1>
 <div *ngIf="!books">
-    <h3>There are not books found using your keyword</h3>
+    <h3>Searching</h3>
 </div>
-<div *ngIf="books">
-    <div *ngFor="let b of books" class="book">
-    <h4 [routerLink]="['/book',b.id]">{{ b.title }}</h4>
-    <h4>{{b.id}}</h4>
+<div class="flex-parent-element">
+  <div class="row">
+  
+      <mat-card align=center class="details-card flex-child-element" *ngFor="let book of books; let i = index ">
+      <mat-card-header>
+        <mat-card-subtitle>{{book.authors}}</mat-card-subtitle>
+        <mat-card-title [routerLink]="['/book',book.id]">{{book.title}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="book-picture">
+            <img src="{{book.imageUrl}}" alt="">
+        </div>
+      </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-</div>
-
-
+</body>
+</html>

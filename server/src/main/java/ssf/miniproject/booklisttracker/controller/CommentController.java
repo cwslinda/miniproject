@@ -1,10 +1,8 @@
 package ssf.miniproject.booklisttracker.controller;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.catalina.connector.Response;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.json.Json;
-import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import ssf.miniproject.booklisttracker.model.Comment;
 import ssf.miniproject.booklisttracker.model.UserResponse;

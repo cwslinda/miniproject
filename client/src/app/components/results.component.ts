@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Book } from '../models';
 import { BookService } from '../services/book.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-results',
@@ -14,17 +15,18 @@ export class ResultsComponent implements OnInit {
 
   books!: Book[]
   keyword!: string
+  form!:FormGroup
 
   param$!: Subscription
+  userId = localStorage.getItem("userId")
 
-  constructor(private ar: ActivatedRoute, private svc: BookService, private router: Router){}
+
+  constructor(private ar: ActivatedRoute, private svc: BookService, private router: Router, private fb: FormBuilder){}
 
 
 
 
   ngOnInit(): void {
-    const userId = localStorage.getItem("userId");
-    console.log(userId)
     this.param$ = this.ar.params.subscribe(
       (params) => {
         this.keyword = params['keyword']
@@ -37,8 +39,29 @@ export class ResultsComponent implements OnInit {
             }).catch(error => {
               console.log(error)
             })
-      }
-    )
+      })
+      this.form = this.createForm();
     }
+
+
+  logout() : void {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+  }
+
+
+  search(){
+    const keyword: string = this.form.value['keyword']
+    console.log("search for", keyword)
+
+    this.router.navigate([`/books/${keyword}`])
+  }
+
+  createForm(): FormGroup {
+    return this.fb.group({
+      keyword: this.fb.control<string>("", [Validators.required])
+    })
+
+  }
 
 }

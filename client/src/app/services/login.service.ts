@@ -22,7 +22,7 @@ export class LoginService {
         .set('Access-Control-Allow-Origin', '*')
 
     return firstValueFrom(
-        this.http.post<any>(`/api/register`, formData, {headers})
+        this.http.post<any>(`${this.url}/api/register`, formData, {headers})
         )
 
     }

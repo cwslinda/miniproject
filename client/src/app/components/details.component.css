@@ -1,0 +1,52 @@
+.details-card{
+    max-width: 400px;
+    margin-left: 250px;
+  }
+  
+.book-picture{
+  padding-top: 20px;
+  display: flex;
+  justify-content: center
+}
+
+.details{
+  justify-content: center;
+  text-align: center;
+}
+
+.flex-parent-element {
+  display: flex;
+  width: 100%;
+}
+
+.flex-child-element {
+  flex: 1;
+  margin: 10px;
+}
+
+.flex-child-element:first-child {
+  margin-right: 50px;
+  margin-bottom: 50px
+}
+
+.comment-container {
+  margin-top:200px;
+}
+
+.banner {
+  background-image: url('../../assets/images/login_bg.jpg');
+  height: 200px;
+  background-size:cover;
+  background-position:right center;
+  background-repeat: no-repeat;
+}
+
+
+
+.example-full-width {
+  width: 100%;
+}
+
+.comment-example-card{
+  margin-bottom: 10px;
+}

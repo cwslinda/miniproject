@@ -6,6 +6,7 @@ import { BookService } from '../services/book.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CommentService } from '../services/comment.service';
 import { SharingService } from '../services/sharing.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-details',
@@ -14,7 +15,9 @@ import { SharingService } from '../services/sharing.service';
 })
 export class DetailsComponent {
 
+  readmore: boolean = true
 
+ 
   isNotUser: boolean = false
   book!: Book
   param$!: Subscription
@@ -28,7 +31,7 @@ export class DetailsComponent {
 
   id = localStorage.getItem("userId")!
 
-  constructor(private ar: ActivatedRoute, private router: Router, private bookSvc: BookService, private commentSvc: CommentService, private fb: FormBuilder, private sharingService : SharingService) {}
+  constructor(private ar: ActivatedRoute, private location: Location, private router: Router, private bookSvc: BookService, private commentSvc: CommentService, private fb: FormBuilder, private sharingService : SharingService) {}
   
   ngOnInit(): void {
     this.commentForm = this.createForm();
@@ -83,6 +86,10 @@ export class DetailsComponent {
    
   }
 
+  logout() : void {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+  }
   processCommentForm(){
    const formData = new FormData();
    formData.set("userId", this.id)
@@ -111,11 +118,12 @@ export class DetailsComponent {
 
   back(){
     if(this.id != null){
-      this.router.navigate([`/home/${this.id}`])
+      this.location.back()
     } else {
       this.router.navigate([`/home`])
 
     }
 
   }
+
 }

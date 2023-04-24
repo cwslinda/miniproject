@@ -40,8 +40,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AngularMaterialModule,
     BrowserAnimationsModule
-    
   ],
+
   providers: [LoginService, BookService, CommentService, SharingService],
   bootstrap: [AppComponent]
 })

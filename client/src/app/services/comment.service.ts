@@ -8,6 +8,8 @@ import { Book, CommentResult } from "../models";
 })
 export class CommentService{
 
+    url = "https://ignorant-north-production.up.railway.app";
+
     constructor(private http: HttpClient) { }
 
 
@@ -17,7 +19,7 @@ postComment(formData: FormData): Promise<any>{
     console.log(formData)
 
     return firstValueFrom(
-        this.http.post<any>(`api/comment/save`, formData)
+        this.http.post<any>(`${this.url}/api/comment/save`, formData)
     )
 }
 
@@ -30,7 +32,7 @@ postComment(formData: FormData): Promise<any>{
                     .set('content-type', 'application/json')
                     .set('Access-Control-Allow-Origin', '*')
 
-    return lastValueFrom(this.http.get<CommentResult[]>(`api/${bookId}/comments`, {headers}))
+    return lastValueFrom(this.http.get<CommentResult[]>(`${this.url}/api/${bookId}/comments`, {headers}))
 }
 
 getCommentsFromId(userId: string): Promise<CommentResult[]>{
@@ -41,12 +43,12 @@ getCommentsFromId(userId: string): Promise<CommentResult[]>{
                     .set('content-type', 'application/json')
                     .set('Access-Control-Allow-Origin', '*')
 
-    return lastValueFrom(this.http.get<CommentResult[]>(`api/user-comments/${userId}`, {headers}))
+    return lastValueFrom(this.http.get<CommentResult[]>(`${this.url}/api/user-comments/${userId}`, {headers}))
 }
 
 deleteComment(commentId: string): Promise<any>{
     const params = new HttpParams().set("commentId", commentId)
 
-    return lastValueFrom(this.http.delete<any>(`api/comment/delete`, {params}))
+    return lastValueFrom(this.http.delete<any>(`${this.url}/api/comment/delete`, {params}))
     }
 }
