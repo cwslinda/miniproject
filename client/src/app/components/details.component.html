@@ -70,7 +70,7 @@
                     <p>by: {{comment.username}}</p>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-button [disabled]="userId != comment.userId ? true :false " (click)="deleteComment(comment.commentId)">
+                    <button mat-button [disabled]="id != comment.userId ? true :false " (click)="deleteComment(comment.commentId)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </mat-card-actions>
