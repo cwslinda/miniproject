@@ -34,7 +34,7 @@ public class CommentController {
     private CommentService commentSvc;
 
 
-    @PostMapping(path = "/comment/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/comment/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
     @CrossOrigin()
     public ResponseEntity<String> postComment(@RequestPart String userId, @RequestPart String bookId, @RequestPart String bookTitle, @RequestPart String commentTitle, @RequestPart String comment){   
@@ -46,6 +46,7 @@ public class CommentController {
         c.setCommentTitle(commentTitle);
         c.setComment(comment);
         
+        System.out.println(c.getUserId());
         Optional<String> opt = commentSvc.createComment(c);
         String commentId = opt.get();
 
